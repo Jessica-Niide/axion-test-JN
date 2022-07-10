@@ -21,6 +21,9 @@ module.exports = {
       },
       boxShadow: {
         sm: '0 2px 7px 3px rgba(0, 0, 0, 0.1)'
+      },
+      backgroundImage: {
+        linear: 'linear-gradient(134.72deg, #AE23A9 0%, #DC4E1B 100%)'
       }
     }
   },
