@@ -1,25 +1,38 @@
 import  Head  from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from 'next/router';
-import { Card } from "../../components/Card";
 import useSwr from 'swr';
-import { Key } from "react";
+import { Key, useContext } from "react";
+import { useRouter } from 'next/router';
+import { AuthContext } from '../../contexts/AuthContext';
+import { Card } from "../../components/Card";
+import { Loading } from "../../components/Loading";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = (url: string, token: string) => fetch(url, {
+    method: "GET",
+      headers: {
+        'Content-type': "application/json",
+        'Authorization': `Bearer ${token}`
+      }
+    },
+  ).then((res) => res.json());
+
 
 export default function Lists() {
   const router = useRouter()
   const { types } = router.query
-
+  const { token } = useContext(AuthContext);
+  
+  
   const { data, error } = useSwr(
-    `http://localhost:1337/${types}`,
+    [`http://localhost:1337/${types}`, token],
     fetcher
-  );
-  if (!data) return "Loading...";
-
+    );
+    
+  if (!data) return (<Loading />);
+  if (!token) return (<Loading />);
   if (error) return "An error has occurred.";
-
+    
   return (
     <>
     <Head>

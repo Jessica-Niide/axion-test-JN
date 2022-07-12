@@ -24,17 +24,11 @@ module.exports = {
       },
       backgroundImage: {
         linear: 'linear-gradient(134.72deg, #AE23A9 0%, #DC4E1B 100%)'
+      },
+      screens: {
+        lg: '1500px'
       }
     }
   },
   plugins: []
 }
-
-// box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.1);
-
-// #4A4A4A
-// #AE23A9
-// #DC4E1B
-// #9B9B9B
-// #FFFFFF
-// #F9F9F9
